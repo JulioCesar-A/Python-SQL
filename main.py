@@ -24,6 +24,14 @@ while inicio == "s" or inicio == "S":
             menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar | 5- Encerrar) -> ")
         #Read
         if menu == "2":
-
+            comando = f'SELECT * FROM alunos'
+            meucursor.execute(comando)
+            resultado= meucursor.fetchall()
+            print(resultado)
+            menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar | 5- Encerrar) -> ")
+        if menu == "3":
+            colunaVN = input("Informe a coluna a ser alterada e o novo valor dela: ")
+            condicao = input("Informe a condição para essa alteração: ")
+            comando = f''
 meucursor.close()
 banco.close()

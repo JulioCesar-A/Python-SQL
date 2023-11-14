@@ -29,9 +29,14 @@ while inicio == "s" or inicio == "S":
             resultado= meucursor.fetchall()
             print(resultado)
             menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar | 5- Encerrar) -> ")
+        #Update
         if menu == "3":
             colunaVN = input("Informe a coluna a ser alterada e o novo valor dela: ")
             condicao = input("Informe a condição para essa alteração: ")
-            comando = f''
+            comando = f'UPDATE FROM alunos SET {colunaVN} WHERE {condicao}'
+            meucursor.execute(comando)
+            banco.commit()
+        #Delete
+        if menu == "4":
 meucursor.close()
 banco.close()

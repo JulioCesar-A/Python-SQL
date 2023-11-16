@@ -8,35 +8,39 @@ banco = mysql.connector.connect(
 )
 meucursor = banco.cursor()
 
-inicio = input("Deseja iniciar alguma ação? (s/n) -> ")
-while inicio == "s" or inicio == "S":
-    menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar) -> ")
-    while menu == "1" or menu == "2" or menu == "3" or menu == "4":
-        #Create
-        if menu == "1":
-            nome_aluno = input("Informe o nome do aluno: ")
-            cpf_aluno = input("Informe o CPF do aluno: ")
-            telefone_aluno = input("Informe o telefone do aluno: ")
-            endereço_aluno = input("Informe o endereço do aluno: ")
-            comando = f'INSERT INTO alunos VALUES ("{nome_aluno}","{cpf_aluno}","{telefone_aluno}","{endereço_aluno}")'
-            meucursor.execute(comando)
+while True:
+    menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar)\nAção escolhida: ")
+    if menu == "1":
+        tabela = input("\nEm qual tabela você deseja inserir dados? ")
+        if tabela == "livros" or tabela == "livros".upper() or tabela == "livros".capitalize():
+            Nome_Livro = input("Informe o nome do livro: ")
+            Genero = input("Informe o gênero do livro: ")
+            Ano_Publicacao = input("Informe o ano de publicação do livro: ")
+            Valor_Livro = input("Informe o valor do livro: ")
+            inserir = f'INSERT INTO Livros VALUES ("{Nome_Livro}","{Genero}","{Ano_Publicacao}","{Valor_Livro}")'
+            meucursor.execute(inserir)
             banco.commit()
-            menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar | 5- Encerrar) -> ")
-        #Read
-        if menu == "2":
-            comando = f'SELECT * FROM alunos'
-            meucursor.execute(comando)
-            resultado= meucursor.fetchall()
-            print(resultado)
-            menu = input("Qual ação deseja realizar?\n(1- Inserir | 2- Ler | 3- Atualizar | 4- Deletar | 5- Encerrar) -> ")
-        #Update
-        if menu == "3":
-            colunaVN = input("Informe a coluna a ser alterada e o novo valor dela: ")
-            condicao = input("Informe a condição para essa alteração: ")
-            comando = f'UPDATE FROM alunos SET {colunaVN} WHERE {condicao}'
-            meucursor.execute(comando)
+        elif tabela == "autores" or tabela == "autores".upper() or tabela == "autores".capitalize():
+            Nome_Autor = input("Informe o nome do escritor(a): ")
+            Nacionalidade_Autor = input("Informe a nacionalidade do escritor(a): ")
+            Nascimento_Autor = input("Informe o ano de nascimento do escritor(a): ")
+            Falecimento_Autor = input("Informe o ano de falecimento do escritor(a) (se houver): ")
+            inserir = f'INSERT INTO Autores VALUES ("{Nome_Autor}","{Nacionalidade_Autor}","{Nascimento_Autor}","{Falecimento_Autor}")'
+            meucursor.execute(inserir)
             banco.commit()
-        #Delete
-        if menu == "4":
+        elif tabela == "editora" or tabela == "editora".upper() or tabela == "editora".capitalize():
+            Nome_Editora = input("Informe o nome da editora: ")
+            Fundacao_Editora = input("Informe o ano de fundação da editora: ")
+            Num_Selos = input("Informe o número de selos da editora: ")
+            
+            
+            
+    elif menu == "2":
+
+
+    elif menu == "2":
+
+
+    elif menu == "2":
 meucursor.close()
 banco.close()

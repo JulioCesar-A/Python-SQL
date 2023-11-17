@@ -14,8 +14,7 @@ while True:
             Nome_Livro = input("Informe o nome do livro: ")
             Genero = input("Informe o gênero do livro: ")
             Ano_Publicacao = input("Informe o ano de publicação do livro: ")
-            Valor_Livro = input("Informe o valor do livro: ")
-        #    inserir = f'INSERT INTO Livros VALUES ("{Nome_Livro}","{Genero}","{Ano_Publicacao}","{Valor_Livro}")'
+        #    inserir = f'INSERT INTO Livros VALUES ("{Nome_Livro}","{Genero}","{Ano_Publicacao}")'
        #     meucursor.execute(inserir)
       #      banco.commit()
         elif tabela == "autores" or tabela == "autores".upper() or tabela == "autores".capitalize():
@@ -31,6 +30,14 @@ while True:
             Fundacao_Editora = input("Informe o ano de fundação da editora: ")
             Num_Selos = input("Informe o número de selos da editora: ")
   #          inserir = f'INSERT INTO Editoras VALUES ("{Nome_Editora}","{Fundacao_Editora}","{Num_Selos}")'
+ #           meucursor.execute(inserir)
+#            banco.commit()
+        elif tabela == "vendas" or tabela == "vendas".upper() or tabela == "vendas".capitalize():
+            fk_Livro = input("Informe o id do Livro: ")
+            fk_Autor = input("Informe o nome do autor(a): ")
+            fk_Editora = input("Informe o nome da editora: ")
+            Valor_Livro = input("Informe o valor do livro: ")
+  #          inserir = f'INSERT INTO Vendas VALUES ("{fk_Livro}","{fk_Autor}","{fk_Editora}","{Valor_Livro}")'
  #           meucursor.execute(inserir)
 #            banco.commit()
         else:
@@ -56,6 +63,12 @@ while True:
    #         for x in resultado:
    #             print(x)
         elif tabela == "publicados" or tabela == "publicados".upper() or tabela == "publicados".capitalize():
+            leitura = f'SELECT * FROM {tabela}'
+ #           meucursor.execute(leitura)
+#            resultado = meucursor.fetchall()
+  #           for x in resultado:
+  #             print(x)
+        elif tabela == "vendas" or tabela == "vendas".upper() or tabela == "vendas".capitalize():
             leitura = f'SELECT * FROM {tabela}'
  #           meucursor.execute(leitura)
 #            resultado = meucursor.fetchall()
@@ -91,34 +104,42 @@ while True:
      #           atualizar = f'UPDATE {tabela} SET Valor_Livro = "{novo_valor}" WHERE Valor_Livro = "{antigo_valor}"'
     #            meucursor.execute(atualizar)
    #             banco.commit()
+        elif tabela == "vendas" or tabela == "vendas".upper() or tabela == "vendas".capitalize():
+            coluna = input("O que você deseja alterar? ")
+            if coluna in "valorVALOR":
+                novo_valor = input("Informe o novo valor: ")
+                fk_Livro = input("Informe o id do livro que terá seu valor alterado: ")
+               # atualizar = f'UPDATE {tabela} SET Valor_Livro = "{novo_valor}" WHERE fk_Livro = "{fk_Livro}"'
+ #               meucursor.execute(atualizar)
+#                banco.commit()
             else:
                 print("Opção inválida")
         elif tabela == "autores" or tabela == "autores".upper() or tabela == "autores".capitalize():
             coluna = input("O que você deseja alterar? ")
             if coluna in "nomeNOME":
-                antigo_nome = input("Informe o antigo nome: ")
+                Nome_Autor = input("Informe o nome do escritor(a): ")
                 novo_nome = input("Informe o novo nome: ")
-  #              atualizar = f'UPDATE {tabela} SET Nome_Autor = "{novo_nome}" WHERE Nome_Autor = "{antigo_nome}"'
+  #              atualizar = f'UPDATE {tabela} SET Nome_Autor = "{novo_nome}" WHERE Nome_Autor = "{Nome_Autor}"'
  #               meucursor.execute(atualizar)
 #                banco.commit()
             elif coluna in "nacionalidadeNACIONALIDADE":
-                antigo_nacional = input("Informe a antiga nacionalidade: ")
+                Nome_Autor = input("Informe o nome do escritor(a): ")
                 novo_nacional = input("Informe a nova nacionalidade: ")
-              #  atualizar = f'UPDATE {tabela} SET Nacionalidade_Autor = "{novo_nacional}" WHERE Nacionalidade_Autor = "{antigo_nacional}"'
+              #  atualizar = f'UPDATE {tabela} SET Nacionalidade_Autor = "{novo_nacional}" WHERE Nome_Autor = "{Nome_Autor}"'
              #   meucursor.execute(atualizar)
             #    banco.commit()
             elif coluna in "anoANO":
                 opcao = input("Informe qual ano será alterado\n(N- Nascimento |F- Falecimento)")
                 if opcao == "f" or opcao == "F":
-                    antigo_ano = input("Informe o antigo ano de falecimento: ")
+                    Nome_Autor = input("Informe o nome do escritor(a): ")
                     novo_ano = input("Informe o novo ano de falecimento: ")
-           #         atualizar = f'UPDATE {tabela} SET Falecimento_Autor = "{novo_ano}" WHERE Falecimento_Autor = "{antigo_ano}"'
+           #         atualizar = f'UPDATE {tabela} SET Falecimento_Autor = "{novo_ano}" WHERE Nome_Autor = "{Nome_Autor}"'
           #          meucursor.execute(atualizar)
          #           banco.commit()
                 elif opcao == "n" or opcao == "n":
-                    antigo_ano = input("Informe o antigo ano de nascimento: ")
+                    Nome_Autor = input("Informe o nome do escritor(a): ")
                     novo_ano = input("Informe o novo ano de Nascimento: ")
-        #            atualizar = f'UPDATE {tabela} SET Nascimento_Autor = "{novo_ano}" WHERE Nascimento_Autor = "{antigo_ano}"'
+        #            atualizar = f'UPDATE {tabela} SET Nascimento_Autor = "{novo_ano}" WHERE Nome_Autor = "{Nome_Autor}"'
        #             meucursor.execute(atualizar)
       #              banco.commit()
                 else:
@@ -128,25 +149,23 @@ while True:
         elif tabela == "editoras" or tabela == "editoras".upper() or tabela == "editoras".capitalize():
             coluna = input("O que você deseja alterar? ")
             if coluna in "nomeNOME":
-                antigo_nome = input("Informe o antigo nome: ")
+                Nome_Editora = input("Informe a editora: ")
                 novo_nome = input("Informe o novo nome: ")
-     #           atualizar = f'UPDATE {tabela} SET Nome_Editora = "{novo_nome}" WHERE Nome_Editora = "{antigo_nome}"'
+     #           atualizar = f'UPDATE {tabela} SET Nome_Editora = "{novo_nome}" WHERE Nome_Editora = "{Nome_Editora}"'
     #            meucursor.execute(atualizar)
    #             banco.commit()
             elif coluna in "anoANO":
-                antigo_ano = input("Informe o antigo ano: ")
+                Nome_Editora = input("Informe a editora: ")
                 novo_ano = input("Informe o novo ano: ")
-         #       atualizar = f'UPDATE {tabela} SET Fundação_Editora = "{novo_ano}" WHERE Fundação_Editora = "{antigo_ano}"'
+         #       atualizar = f'UPDATE {tabela} SET Fundação_Editora = "{novo_ano}" WHERE Nome_Editora = "{Nome_Editora}"'
         #        meucursor.execute(atualizar)
        #         banco.commit()
             elif coluna in "selosSELOS":
-                antigo_selo = input("Informe o antigo número de selos: ")
+                Nome_Editora = input("Informe a editora: ")
                 novo_selo = input("Informe o novo número de selos: ")
-         #       atualizar = f'UPDATE {tabela} SET Num_Selos = "{novo_selo}" WHERE Num_Selos = "{antigo_selo}"'
+         #       atualizar = f'UPDATE {tabela} SET Num_Selos = "{novo_selo}" WHERE Nome_Editora = "{Nome_Editora}"'
         #        meucursor.execute(atualizar)
        #         banco.commit()
-        #UPDATE da tabela publicados        
-        #elif tabela == "publicados" or tabela == "publicados".upper() or tabela == "publicados".capitalize():
         else:
             print("Opção inválida")
     elif menu == "4":
